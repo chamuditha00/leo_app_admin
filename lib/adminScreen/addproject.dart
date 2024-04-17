@@ -14,6 +14,7 @@ class AddProject extends StatefulWidget {
 
 class _AddProjectState extends State<AddProject> {
   File? _image;
+  TextEditingController _projectNameController = TextEditingController();
   TextEditingController _captionController = TextEditingController();
 
   Future<void> _getImage() async {
@@ -43,6 +44,7 @@ class _AddProjectState extends State<AddProject> {
           // Add project data to Firestore with a timestamp field
           await FirebaseFirestore.instance.collection('Projects').add({
             'image_url': imageUrl,
+            'project_name': _projectNameController.text.trim(),
             'caption': caption,
             'timestamp': FieldValue.serverTimestamp(), // Add timestamp field
           });
@@ -152,6 +154,15 @@ class _AddProjectState extends State<AddProject> {
                           label: Text('Add flyer'),
                         ),
                       ),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: _projectNameController,
+                decoration: InputDecoration(
+                  labelText: 'Project Name',
+                  hintText: 'Enter project name',
+                  border: OutlineInputBorder(),
+                ),
               ),
               SizedBox(height: 10),
               TextField(

@@ -10,7 +10,7 @@ class AdminPage extends StatefulWidget {
 
 class _AdminPageState extends State<AdminPage> {
   final TextEditingController _passwordController = TextEditingController();
-  final String correctPassword = "123";
+  final String correctPassword = "M2cy8X@rK%";
 
   void _login() {
     String enteredPassword = _passwordController.text.trim();
